@@ -19,8 +19,9 @@ void juggle_pal() {                                            // Several colore
   thisindex = 0;                                           // Reset the hue values.
   fadeToBlackBy(leds, NUM_LEDS, thisfade);
   for( int i = 0; i < numdots; i++) {
-    leds[beatsin16(thisbeat+i+numdots,0,NUM_LEDS)] += ColorFromPalette(currentPalette, thisindex , thisbright, currentBlending);    // Munge the values and pick a colour from the palette
-    thisindex += thisdiff;
+    //leds[beatsin16(thisbeat+i+numdots,0,NUM_LEDS)] += ColorFromPalette(currentPalette, thisindex , thisbright, currentBlending);    // Munge the values and pick a colour from the palette
+	LtoR_PaletteAdd(beatsin16(thisbeat + i + numdots, 0, 68), currentPalette, thisindex);
+	thisindex += thisdiff;
   }
 } // juggle_pal()
 

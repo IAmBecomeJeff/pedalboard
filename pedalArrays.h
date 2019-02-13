@@ -96,7 +96,7 @@ void LtoR_Palette(uint8_t pos, CRGBPalette16 pal, uint8_t index, uint8_t bri = t
 	}
 }
 
-void LtoR_PaletteAdd(uint8_t pos, CRGBPalette16 pal, uint8_t index, uint8_t bri = this_bright, TBlendType blending = current_blending) {
+void LtoR_PaletteAdd(uint8_t pos, CRGBPalette16 pal, uint8_t index, uint8_t bri = 255, TBlendType blending = LINEARBLEND) {
 	if (pos == 0) {
 		for (int i = 0; i < 35; i++) {
 			leds[leftArray[i]] += ColorFromPalette(pal, index, bri, blending);
