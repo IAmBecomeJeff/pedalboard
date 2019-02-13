@@ -25,7 +25,7 @@ void juggle_pal() {                                            // Several colore
 } // juggle_pal()
 
 
-void juggle_from_center(){
+void juggle_from_center_pal(){
   thisindex = 0;
   fadeToBlackBy(leds, NUM_LEDS, thisfade);
 

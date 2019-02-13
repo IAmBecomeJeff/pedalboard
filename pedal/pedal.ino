@@ -22,10 +22,20 @@ TBlendType currentBlending;
 int thisdelay = 10;
 int maxMode = 10;
 
+uint8_t startindex = 0;
+uint8_t thisbeat   = 24;
+uint8_t thisbright = 255;
+uint8_t thisdiff   = 64;
+uint8_t thisfade   = 16;
+uint8_t thisindex  = 0;
+uint8_t numdots    = 1;
+uint8_t thishue;
+
 int leftArray[35];
 int rightArray[35];
 int frontArray[66];
 int backArray[61];
+int LeftToRight[68];
 
 uint8_t ledMode = 1;
 bool newMode = 1;
@@ -39,6 +49,7 @@ uint8_t currentPaletteIndex = 0;
 #include "make_palettes.h"
 #include "gradient_palettes.h"
 #include "pedalArrays.h"
+#include "juggle.h"
 
 
 
@@ -102,6 +113,7 @@ void strobe_mode(uint8_t thisMode, bool mc){
 	switch(thisMode){
 		
 		case  0: if(mc) {fill_solid(leds,NUM_LEDS,CRGB(0,0,0));} break;
-		case  1: if(mc) {settings;} juggle_pal(); break;
+		case  1: if(mc) {thisdelay = 10;} juggle_pal(); break;
+		case  2: if(mc) {thisdelay = 10;} juggle_from_center_pal(); break;
 	}
 }
