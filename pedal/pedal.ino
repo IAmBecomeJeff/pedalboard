@@ -41,6 +41,12 @@ void loop(){
 		ledMode = rand() % maxMode + 1;
 		if(oldMode!=ledMode){newMode=1};
 	}
+
+	EVERY_N_SECONDS(25) {
+		updatePaletteIndex(targetPalette);
+		palette_index = random8(g_gradient_palette_count + 1);
+		target_palette = g_gradient_palettes[palette_index];
+	}
 	
 	EVERY_N_MILLIS(thistime, this_delay){
 		thistimer.setPeriod(this_delay);
@@ -61,8 +67,11 @@ void strobe_mode(uint8_t thisMode, bool mc){
 	
 	switch(thisMode){
 		
-		case  0: if(mc) {fill_solid(leds,NUM_LEDS,CRGB(0,0,0));} break;
-		case  1: if(mc) {this_delay = 10;} juggle_pal(); break;
-		case  2: if(mc) {this_delay = 10;} juggle_from_center_pal(); break;
+		case  0: if (mc) {fill_solid(leds,NUM_LEDS,CRGB(0,0,0));} break;
+		case  1: if (mc) {this_delay = 10;} juggle_pal(); break;
+		case  2: if (mc) {this_delay = 10;} juggle_from_center_pal(); break;
+		case  3: if (mc) { this_delay = 10; } palette_motion(); break;
+		case  4: if (mc) { this_dir = 0; } palette_motion(); break;
+		case  5: if (mc) { this_delay = 15; } center_juggle_pal();  break;
 	}
 }

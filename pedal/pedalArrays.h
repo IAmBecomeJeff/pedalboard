@@ -114,3 +114,18 @@ void LtoR_PaletteAdd(uint8_t pos, CRGBPalette16 pal, uint8_t index, uint8_t bri 
 		}
 	}
 }
+
+void fromCenter(uint8_t pos, CRGBPalette16 pal, uint8_t index, uint8_t bri=255, TBlendType blending = currentBlending) {
+	for (int i = 0; i < 33; i++) {
+		leds[frontArray[32 - i]] = ColorFromPalette(pal, index, bri, blending);
+		leds[frontArray[33 + i]] = ColorFromPalette(pal, index, bri, blending);
+	}
+	for (int i = 33; i < 68; i++) {
+		leds[leftArray[i-33]] = ColorFromPalette(pal, index, bri, blending);
+		leds[rightArray[67-i]] = ColorFromPalette(pal, index, bri, blending);
+	}
+	for (int i = 68; i < 99; i++) {
+		leds[backArray[i-68]] = ColorFromPalette(pal, index, bri, blending);
+		leds[backArray[128-i]] = ColorFromPalette(pal, index, bri, blending);
+	}
+}
