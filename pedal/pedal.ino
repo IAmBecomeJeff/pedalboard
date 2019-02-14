@@ -1,57 +1,6 @@
 // Pedalboard //
 
-#include <FastLED.h>
-#include <EEPROM.h>
-
-#define LED_DT 7
-#define COLOR_ORDER GRB
-#define MAX_LEDS 197
-#define LED_TYPE WS2812
-
-uint8_t NUM_LEDS;
-uint8_t max_bright = 255;
-struct CRGB leds[MAX_LEDS];
-
-CRGBPalette16 currentPalette;
-CRGBPalette16 targetPalette;
-TBlendType currentBlending;
-
-
-// Variables
-
-int thisdelay = 10;
-int maxMode = 10;
-
-uint8_t startindex = 0;
-uint8_t thisbeat   = 24;
-uint8_t thisbright = 255;
-uint8_t thisdiff   = 64;
-uint8_t thisfade   = 16;
-uint8_t thisindex  = 0;
-uint8_t numdots    = 1;
-uint8_t thishue;
-
-int leftArray[35];
-int rightArray[35];
-int frontArray[66];
-int backArray[61];
-int LeftToRight[68];
-
-uint8_t ledMode = 1;
-bool newMode = 1;
-uint8_t oldMode;
-
-extern const TprogmemRGBGradientPalettePtr gGradientPalettes[];
-extern const uint8_t gGradientPaletteCount;
-uint8_t gCurrentPaletteNumber = 0;
-uint8_t currentPaletteIndex = 0;
-
-#include "make_palettes.h"
-#include "gradient_palettes.h"
-#include "pedalArrays.h"
-#include "juggle.h"
-
-
+#include "includes.h"
 
 void setup(){
 	delay(2000);
@@ -93,8 +42,8 @@ void loop(){
 		if(oldMode!=ledMode){newMode=1};
 	}
 	
-	EVERY_N_MILLIS(thistime, thisdelay){
-		thistimer.setPeriod(thisdelay);
+	EVERY_N_MILLIS(thistime, this_delay){
+		thistimer.setPeriod(this_delay);
 		if(newMode){
 			strobe_mode(ledMode,1);
 		}else{
@@ -113,7 +62,7 @@ void strobe_mode(uint8_t thisMode, bool mc){
 	switch(thisMode){
 		
 		case  0: if(mc) {fill_solid(leds,NUM_LEDS,CRGB(0,0,0));} break;
-		case  1: if(mc) {thisdelay = 10;} juggle_pal(); break;
-		case  2: if(mc) {thisdelay = 10;} juggle_from_center_pal(); break;
+		case  1: if(mc) {this_delay = 10;} juggle_pal(); break;
+		case  2: if(mc) {this_delay = 10;} juggle_from_center_pal(); break;
 	}
 }
