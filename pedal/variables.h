@@ -18,7 +18,7 @@ uint8_t palette_index = 1;
 // Variables
 
 int this_delay = 10;
-int maxMode = 10;
+int maxMode = 5;
 
 uint8_t start_index = 0;
 uint8_t this_beat   = 24;
@@ -47,7 +47,7 @@ uint8_t ledMode = 1;
 bool newMode = 1;
 uint8_t oldMode;
 
-extern const TprogmemRGBGradientPalettePtr gGradientPalettes[];
+extern const TProgmemRGBGradientPalettePtr gGradientPalettes[];
 extern const uint8_t gGradientPaletteCount;
 uint8_t gCurrentPaletteNumber = 0;
 uint8_t currentPaletteIndex = 0;

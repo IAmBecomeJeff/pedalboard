@@ -46,9 +46,8 @@ void juggle_from_center_pal(){
 }
 
 void center_juggle_pal() {
-	this_index = 0;
 	fadeToBlackBy(leds, NUM_LEDS, this_fade);
-	fromCenterPal(beatsin16(this_beat + i, 0, 98)), currentPalette, this_index);
+	fromCenterPal(beatsin16(this_beat, 0, 98), currentPalette, this_index, this_bright, currentBlending);
 	this_index += this_diff;
 }
 

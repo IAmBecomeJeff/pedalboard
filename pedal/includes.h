@@ -7,3 +7,4 @@
 #include "gradient_palettes.h"
 #include "pedalArrays.h"
 #include "juggle.h"
+#include "palette_motion.h"

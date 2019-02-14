@@ -15,9 +15,9 @@ void center_matrix_motion() {
 		fromCenterPal(0, currentPalette, this_index, this_bright, currentBlending);
 	}
 	else {
-		fromCenterCRGB(0, 0, 0, 0);)
+		fromCenterCRGB(0, 0, 0, 0);
 	}
-	for (int i = 96; i > 0; i--;) {
+	for (int i = 96; i > 0; i--) {
 		leds[centerRight[i]] = leds[centerRight[i - 1]];
 		leds[centerLeft[i]] = leds[centerLeft[i - 1]];
 	}
