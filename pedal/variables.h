@@ -40,6 +40,8 @@ int frontArray[66];
 int backArray[61];
 int LeftToRight[68];
 int Center[99];
+int centerRight[98];
+int centerLeft[98];
 
 uint8_t ledMode = 1;
 bool newMode = 1;

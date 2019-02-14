@@ -16,6 +16,7 @@ void setup(){
 	targetPalette   = RainbowColors_p;
 	currentBlending = LINEARBLEND;
 	
+	//Set up arrays
 	for (uint8_t i = 0; i < 61; i++) {
 		backArray[i] = i;
 	}
@@ -27,6 +28,16 @@ void setup(){
 		frontArray[i] = i + 96;
 	}
 	
+	for (uint8_t i = 0; i < 98; i++) {
+		centerRight[i] = 128 - i;
+		centerLeft[i] = 129 + 1;;
+		if (i > 67) {
+			centerLeft[i] = 68 - i;
+		}
+
+	}
+
+
 	strobe_mode(ledMode, 1);
 }
 	
@@ -67,11 +78,11 @@ void strobe_mode(uint8_t thisMode, bool mc){
 	
 	switch(thisMode){
 		
-		case  0: if (mc) {fill_solid(leds,NUM_LEDS,CRGB(0,0,0));} break;
-		case  1: if (mc) {this_delay = 10;} juggle_pal(); break;
-		case  2: if (mc) {this_delay = 10;} juggle_from_center_pal(); break;
-		case  3: if (mc) { this_delay = 10; } palette_motion(); break;
-		case  4: if (mc) { this_dir = 0; } palette_motion(); break;
-		case  5: if (mc) { this_delay = 15; } center_juggle_pal();  break;
+		case  1: if (mc) { this_delay = 10; }			juggle_pal();					break;
+		case  2: if (mc) { this_delay = 10; }			juggle_from_center_pal();		break;
+		case  3: if (mc) { this_delay = 10; }			palette_motion();				break;
+		case  4: if (mc) { this_dir = 0;    }			palette_motion();				break;
+		case  5: if (mc) { this_delay = 15; }			center_juggle_pal();			break;
+		case  6: if (mc) { this_delay = 10; }			center_matrix_motion();			break;
 	}
 }
