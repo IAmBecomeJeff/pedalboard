@@ -47,13 +47,16 @@ void loop(){
 		nblendPaletteTowardPalette(currentPalette, targetPalette, maxChanges);
 	}
 	
-	EVERY_N_SECONDS(30){
+	EVERY_N_SECONDS(20){
 		oldMode = ledMode;
-		ledMode = rand() % maxMode + 1;
-		if(oldMode!=ledMode){newMode=1;}
+		ledMode++; //= rand() % maxMode + 1;
+    newMode=1;
+		if(ledMode>maxMode){ledMode=1;}
+		
+		//if(oldMode!=ledMode){newMode=1;}
 	}
 
-	EVERY_N_SECONDS(25) {
+	EVERY_N_SECONDS(10) {
 		updatePaletteIndex(targetPalette);
 		palette_index = random8(g_gradient_palette_count + 1);
 		targetPalette = g_gradient_palettes[palette_index];
@@ -61,11 +64,13 @@ void loop(){
 	
 	EVERY_N_MILLIS_I(thistimer, this_delay){
 		thistimer.setPeriod(this_delay);
-		if(newMode){
-			strobe_mode(ledMode,1);
-		}else{
-			strobe_mode(ledMode, 0);
-		}
+//		if(newMode){
+//			strobe_mode(ledMode,1);
+//     newMode=0;
+//		}else{
+//			strobe_mode(ledMode, 0);
+//		}
+    strobe_mode(4,0);
 	}
 	
 	FastLED.show();
@@ -82,7 +87,7 @@ void strobe_mode(uint8_t thisMode, bool mc){
 		case  2: if (mc) { this_delay = 10; }			juggle_from_center_pal();		break;
 		case  3: if (mc) { this_delay = 10; }			palette_motion();				break;
 		case  4: if (mc) { this_dir = 0;    }			palette_motion();				break;
-		case  5: if (mc) { this_delay = 15; this_index = 0;}			center_juggle_pal();			break;
+		case  5: if (mc) { this_delay = 15; this_index = 4;}			center_juggle_pal();			break;
 		case  6: if (mc) { this_delay = 10; }			center_matrix_motion();			break;
 	}
 }

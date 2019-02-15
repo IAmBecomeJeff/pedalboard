@@ -18,20 +18,20 @@ uint8_t palette_index = 1;
 // Variables
 
 int this_delay = 10;
-int maxMode = 5;
+int maxMode = 3;
 
 uint8_t start_index = 0;
 uint8_t this_beat   = 24;
 uint8_t this_bright = 255;
 uint8_t this_diff   = 64;
-uint8_t this_fade   = 16;
+uint8_t this_fade   = 8;
 uint8_t this_index  = 0;
 uint8_t num_dots    = 1;
 uint8_t this_hue;
 bool this_dir       = 1;
 
 uint8_t color_index = 0;
-uint8_t color_speed = 4;
+uint8_t color_speed = 1;
 uint8_t color_inc   = 8;
 
 int leftArray[35];
