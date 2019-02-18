@@ -87,7 +87,10 @@ void strobe_mode(uint8_t thisMode, bool mc){
 		case  2: if (mc) { this_delay = 10; }			juggle_from_center_pal();		break;
 		case  3: if (mc) { this_delay = 10; }			palette_motion();				break;
 		case  4: if (mc) { this_dir = 0;    }			palette_motion();				break;
-		case  5: if (mc) { this_delay = 15; this_index = 4;}			center_juggle_pal();			break;
+		case  5: if (mc) { this_delay = 15; }			center_juggle_pal();			break;
 		case  6: if (mc) { this_delay = 10; }			center_matrix_motion();			break;
+		case  7: if (mc) { targetPalette = fire_palette; this_delay = 10; } fire_center(); break;
+		case  8: if (mc) { targetPalette = fire_palette2; this_delay = 10; } fire_center(); break;
+		case  9: if (mc) { targetPalette = fire_palette_blue; this_delay = 10; } fire_center(); break;
 	}
 }
