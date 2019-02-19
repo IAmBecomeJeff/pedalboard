@@ -14,7 +14,7 @@ void fire() {
 
 	if (random8() < SPARKING) {
 		int y = random8(7);
-		heat[y] = qadd8(head[y], random8(160, 255));
+		heat[y] = qadd8(heat[y], random8(160, 255));
 	}
 
 	for (int j = 0; j < MAX_LEDS; j++) {
@@ -35,7 +35,7 @@ void fire_center() {
 		heat_center[i] = qsub8(heat_center[i], random8(9, ((COOLING * 10) / 98) + 2));
 	}
 
-	for (int k = MAX_LEDS - 1; k >= 2; k--) {
+	for (int k = STRAND_LENGTH - 1; k >= 2; k--) {
 		heat_center[k] = (heat_center[k - 1] + heat_center[k - 2] + heat_center[k - 2]) / 3;
 	}
 
@@ -47,7 +47,7 @@ void fire_center() {
 	for (int j = 0; j < STRAND_LENGTH; j++) {
 		byte firecolorindex = scale8(heat_center[j], 240);
 		CRGB firecolor = ColorFromPalette(currentPalette, firecolorindex);
-		int pixelnumber;
+		int pixelnumber = j;
 		leds[rightFromCenter[pixelnumber]] = firecolor;
 		leds[leftFromCenter[pixelnumber]] = firecolor;
 	}

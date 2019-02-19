@@ -25,8 +25,18 @@ void juggle_pal() {                                            // Several colore
 } // juggle_pal()
 
 
+void juggle2_pal() {                                            // Several colored dots, weaving in and out of sync with each other
+  //this_index = 0;                                           // Reset the hue values.
+  fadeToBlackBy(leds, NUM_LEDS, this_fade);
+  for( int i = 0; i < num_dots; i++) {
+    leds[beatsin16(this_beat+i+num_dots,0,NUM_LEDS)] += ColorFromPalette(currentPalette, this_index , this_bright, currentBlending);    // Munge the values and pick a colour from the palette
+    //LtoR_PaletteAdd(beatsin16(this_beat + i + num_dots, 0, 67), currentPalette, this_index);
+  this_index += this_diff;
+  }
+} // juggle_pal()
+
 void juggle_from_center_pal(){
-  this_index = 0;
+  //this_index = 0;
   fadeToBlackBy(leds, NUM_LEDS, this_fade);
 
   leds[leftArray[beatsin16_halfup(this_beat, 18,34)]] += ColorFromPalette(currentPalette, this_index, this_bright, currentBlending);
@@ -46,10 +56,10 @@ void juggle_from_center_pal(){
 }
 
 void center_juggle_pal() {
-  this_index = 0;
+  //this_index = 0;
 	fadeToBlackBy(leds, NUM_LEDS, this_fade);
-	leds[rightFromCenter[(beatsin16_halfup(this_beat, 0, 97)]] = ColorFromPalette(currentPalette, this_index, this_bright, currentBlending);
-	leds[leftFromCenter[(beatsin16_halfup(this_beat, 0, 97)]] = ColorFromPalette(currentPalette, this_index, this_bright, currentBlending);
+	leds[rightFromCenter[beatsin16_halfup(this_beat, 0, 97)]] = ColorFromPalette(currentPalette, this_index, this_bright, currentBlending);
+	leds[leftFromCenter[beatsin16_halfup(this_beat, 0, 97)]] = ColorFromPalette(currentPalette, this_index, this_bright, currentBlending);
 	this_index += this_diff;
 }
 
