@@ -9,3 +9,5 @@
 #include "juggle.h"
 #include "palette_motion.h"
 #include "fire.h"
+#include "confettti_pal.h"
+#include "one_sin.h"

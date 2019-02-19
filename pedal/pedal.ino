@@ -48,12 +48,11 @@ void loop(){
 	}
 	
 	EVERY_N_SECONDS(40){
-		oldMode = ledMode;
 		//ledMode++; 
-		ledMode = rand() % maxMode + 1;
-    newMode=1;
 		//if(ledMode>maxMode){ledMode=1;}
-		
+		oldMode = ledMode;
+		ledMode = rand() % maxMode + 1;
+		newMode=1;		
 		if(oldMode!=ledMode){newMode=1;}
 	}
 
@@ -67,7 +66,7 @@ void loop(){
 		thistimer.setPeriod(this_delay);
 		if(newMode){
 			strobe_mode(ledMode,1);
-     newMode=0;
+			newMode=0;
 		}else{
 			strobe_mode(ledMode, 0);
 		}
@@ -84,14 +83,72 @@ void strobe_mode(uint8_t thisMode, bool mc){
 	
 	switch(thisMode){
 		
-		case  1: if (mc) { this_delay = 10; }			juggle_pal();					break;
-		case  2: if (mc) { this_delay = 10; }			juggle_from_center_pal();		break;
-		case  3: if (mc) { this_delay = 10; }			palette_motion();				break;
-		case  4: if (mc) { this_dir = 0;    }			palette_motion();				break;
-		case  5: if (mc) { this_delay = 15; }			center_juggle_pal();			break;
-		case  6: if (mc) { this_delay = 10; }			center_matrix_motion();			break;
-		case  7: if (mc) { targetPalette = fire_palette; this_delay = 10; num_dots = rand()%6+1; } juggle2_pal(); break;
-		case  8: if (mc) { targetPalette = fire_palette2; this_delay = 1; } fire_center(); break;
-		case  9: if (mc) { targetPalette = fire_palette_blue; this_delay = 10; } fire_center(); break;
+		case  1: if (mc) { this_delay = 10; }			
+			juggle_pal(); 
+			break;
+			
+		case  2: if (mc) { this_delay = 10; }			
+			juggle_from_center_pal(); 
+			break;
+			
+		case  3: if (mc) { this_delay = 10; }			
+			palette_motion(); 
+			break;
+			
+		case  4: if (mc) { this_dir = 0;    }			
+			palette_motion(); 
+			break;
+			
+		case  5: if (mc) { this_delay = 15; }			
+			center_juggle_pal(); 
+			break;
+			
+		case  6: if (mc) { this_delay = 10; }			
+			center_matrix_motion();	
+			break;
+			
+		case  7: if (mc) { this_delay = 10; num_dots = rand()%6+1; } 
+			juggle2_pal(); 
+			break;
+			
+		case  8: if (mc) { targetPalette = fire_palette2; this_delay = 10; } 
+			fire_center(); 
+			break;
+			
+		case  9: if (mc) { targetPalette = fire_palette_blue; this_delay = 10; } 
+			fire_center(); 
+			break;
+			
+		case 10: if (mc) { targetPalette = fire_palette; this_delay = 15; } 
+			fire_center(); 
+			break; 
+			
+		case 11: if (mc) { this_delay = 10; this_fade = 16; num_dots = 4;}			
+			juggle_pal();
+			break;
+			
+		case 12: if (mc) { this_delay = 10; this_fade = 32; this_diff = 16;}			
+			juggle_from_center_pal(); 
+			break;
+			
+		case 13: if (mc) { this_delay = 10; this_fade = 24; num_dots = 1;}			
+			juggle_pal(); 
+			break;
+			
+		case 14: if (mc) { this_delay = 10; this_fade = 8; this_diff = 32; }			
+			juggle_from_center_pal(); 
+			break;
+			
+		case 15: if (mc) { this_delay = 10; this_fade = 16; this_inc = 8; this_diff = 16; } 
+			confetti_pal(); 
+			break;
+			
+		case 16: if (mc) { this_delay = 10; }
+			one_sin_pal();
+			break;
+			
+		case 17: if (mc) { this_delay = 10; }
+			one_sin_center_pal();
+			break;
 	}
 }
