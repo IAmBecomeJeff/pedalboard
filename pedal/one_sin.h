@@ -46,6 +46,26 @@ void one_sin_center_pal() {
 }
 
 
+void matrix_ray(uint8_t colorIndex) {                                                 // Send a PWM'd sinewave instead of a random happening of LED's down the strand.
+
+  //static uint8_t thisdir = 0;                                                         // We could change the direction if we want to. Static means to assign that value only once.
+  //static int thisphase = 0;                                                           // Phase change value gets calculated. Static means to assign that value only once.
+  //uint8_t thiscutoff;                                                                 // You can change the cutoff value to display this wave. Lower value = longer wave.
+
+  this_phase += beatsin8(1,20, 50);                                                    // You can change direction and speed individually.
+  this_cutoff = beatsin8(50,164,248);                                                  // This variable is used for the PWM of the lighting with the qsubd command below.
+  
+  this_bright = qsubd(cubicwave8(this_phase), this_cutoff);                          // It's PWM time. qsubd sets a minimum value called thiscutoff. If < thiscutoff, then thisbright = 0. Otherwise, thisbright = thiscutoff.
+ 
+  if (this_dir == 0) {                                                                 // Depending on the direction, we'll put that brightness in one end of the array. Andrew Tuline wrote this.
+    leds[0] = ColorFromPalette(currentPalette, colorIndex, this_bright, currentBlending); 
+    memmove(leds+1, leds, (MAX_LEDS-1)*3);                                            // Oh look, the FastLED method of copying LED values up/down the strand.
+  } else {
+    leds[MAX_LEDS-1] = ColorFromPalette( currentPalette, colorIndex, this_bright, currentBlending);
+    memmove(leds, leds+1, (MAX_LEDS-1)*3);    
+  }
+
+} // matrix_ray()
 
 
 #endif

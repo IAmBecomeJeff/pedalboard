@@ -64,4 +64,18 @@ void center_juggle_pal() {
 }
 
 
+void sinelon() {
+	fadeToBlackBy( leds, MAX_LEDS, this_fade);
+	int pos = beatsin16(13,0,MAX_LEDS);
+	static int prevpos = 0;
+	if( pos < prevpos ){
+		fill_solid( leds+pos, (prevpos-pos)+1, CHSV(gHue,220,255));
+	}else{
+		fill_solid( leds+prevpos, (pos-prevpos)+1, CHSV( gHue,220,255));
+		gHue++;
+	}
+	prevpos=pos;
+}
+
+
 #endif

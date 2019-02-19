@@ -4,6 +4,12 @@
 
 void setup(){
 	delay(2000);
+	Serial.begin(115200);
+	Serial.prinln(F("Pedalboard LEDS"));
+	Serial.println(F(""));
+	Serial.print(F("Initial Free SRAM:  "));
+	Serial.println(freeRam());
+	Serial.println(F(""));
 	
 	LEDS.setBrightness(max_bright);
 	LEDS.addLeds<LED_TYPE, LED_DT, COLOR_ORDER>(leds,MAX_LEDS);
@@ -27,18 +33,15 @@ void setup(){
 	for (uint8_t i = 0; i < 66; i++) {
 		frontArray[i] = i + 96;
 	}
-	
-	for (uint8_t i = 0; i < 98; i++) {
-		centerRight[i] = 128 - i;
-		centerLeft[i] = 129 + 1;;
-		if (i > 67) {
-			centerLeft[i] = 68 - i;
-		}
-
-	}
-
 
 	strobe_mode(ledMode, 1);
+	
+	
+	Serial.println(F(""));
+	Serial.println(F("Starting loop."));
+	Serial.print(F("Post-setup Free SRAM:  "));
+	Serial.println(freeRam());
+	Serial.println(F(""));
 }
 	
 void loop(){
@@ -60,6 +63,15 @@ void loop(){
 		updatePaletteIndex(targetPalette);
 		palette_index = random8(g_gradient_palette_count + 1);
 		targetPalette = g_gradient_palettes[palette_index];
+	}
+	
+	EVERY_N_SECONDS(10) {
+		Serial.print(F("Free SRAM:  "));
+		Serial.println(freeRam());
+		Serial.println(F(""));
+		Serial.println(F("Timer: "));
+		Serial.println(ram_counter_10s);
+		Serial.println(F(""));
 	}
 	
 	EVERY_N_MILLIS_I(thistimer, this_delay){
@@ -149,6 +161,14 @@ void strobe_mode(uint8_t thisMode, bool mc){
 			
 		case 17: if (mc) { this_delay = 10; }
 			one_sin_center_pal();
+			break;
+			
+		case 18: if (mc) { this_delay = 10; this_phase = 0; this_dir = 0;}
+			matrix_ray(millis()>>4);
+			break;
+			
+		case 19: if (mc) { this_fade = 16; }
+			sinelon();
 			break;
 	}
 }
