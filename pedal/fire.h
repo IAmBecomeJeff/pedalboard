@@ -5,7 +5,7 @@ void fire() {
 	static byte heat[MAX_LEDS];
 
 	for(int i = 0; i < MAX_LEDS; i++) {
-		heat[i] = qsub8(heat[i], random8(9, ((COOLING * 10) / MAX_LEDS) + 2));
+		heat[i] = qsub8(heat[i], random8(0, ((COOLING * 10) / MAX_LEDS) + 2));
 	}
 
 	for (int k = MAX_LEDS - 1; k >= 2; k--) {
@@ -32,7 +32,7 @@ void fire_center() {
 	static byte heat_center[STRAND_LENGTH];
 
 	for (int i = 0; i < STRAND_LENGTH; i++) {
-		heat_center[i] = qsub8(heat_center[i], random8(9, ((COOLING * 10) / 98) + 2));
+		heat_center[i] = qsub8(heat_center[i], random8(0, ((COOLING * 10) / 98) + 2));
 	}
 
 	for (int k = STRAND_LENGTH - 1; k >= 2; k--) {

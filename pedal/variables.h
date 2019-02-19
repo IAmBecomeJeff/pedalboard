@@ -59,6 +59,6 @@ uint8_t currentPaletteIndex = 0;
 CRGBPalette16 fire_palette = HeatColors_p;
 CRGBPalette16 fire_palette2 = CRGBPalette16(CRGB::Black, CRGB::Red, CRGB::Yellow, CRGB::White);
 CRGBPalette16 fire_palette_blue = CRGBPalette16(CRGB::Black, CRGB::Blue, CRGB::Aqua, CRGB::White);
-#define COOLING 10
-#define SPARKING 220
+#define COOLING 55
+#define SPARKING 110
 #define STRAND_LENGTH 98
