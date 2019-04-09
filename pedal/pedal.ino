@@ -36,27 +36,31 @@ void setup(){
 
 	strobe_mode(ledMode, 1);
 	
-	
 //	Serial.println(F(""));
 //	Serial.println(F("Starting loop."));
 //	Serial.print(F("Post-setup Free SRAM:  "));
 //	Serial.println(freeRam());
 //	Serial.println(F(""));
 }
-	
+
+//  // Reset function
+//void(* resetFunc) (void) = 0; 
+
 void loop(){
 	EVERY_N_MILLISECONDS(50){
 		uint8_t maxChanges = 24;
 		nblendPaletteTowardPalette(currentPalette, targetPalette, maxChanges);
 	}
-	
-	EVERY_N_SECONDS(60){
-		ledMode++; 
-		if(ledMode>maxMode){ledMode=1;}
-//		oldMode = ledMode;
-//		ledMode = rand() % maxMode + 1;
-//		newMode=1;		
-//		if(oldMode!=ledMode){newMode=1;}
+
+  EVERY_N_MINUTES(10){WRITE_RESTART(0x5FA0004);}
+  
+	EVERY_N_SECONDS(65){
+//		ledMode++; 
+//		if(ledMode>maxMode){ledMode=1;}
+		oldMode = ledMode;
+		ledMode = rand() % maxMode + 1;
+		newMode=1;		
+		if(oldMode!=ledMode){newMode=1;}
 	}
 
 	EVERY_N_SECONDS(15) {
